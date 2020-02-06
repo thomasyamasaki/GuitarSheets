@@ -13,7 +13,7 @@ import 'package:sqflite/sqlite_api.dart';
 import 'SongModel.dart';
 import 'TaskModel.dart';
 import 'MediaModel.dart';
-//import 'SongMediaModel.dart';
+import 'SongMediaModel.dart';
 
 class DBprovider {
   DBprovider._();
@@ -75,21 +75,35 @@ class DBprovider {
 
   //Create operations:
 
-  insertSong(Song song) {
-
+  insertSong(Song song) async {
+    final db = await database;
+    var res = await db.insert("Song", song.toMap());
+    return res;
   }
 
-  insertTask(Task task) {
-
+  insertTask(Task task) async {
+    final db = await database;
+    var res = await db.insert("Task", task.toMap());
+    return res;
   }
 
-  insertMedia(Media media) {
+  insertMedia(Media media) async {
+    final db = await database;
+    var res = await db.insert("Media", media.toMap());
+    return res;
+  }
 
+  //Song media table foreign key link
+  createLink(SongMedia link) async {
+    final db = await database;
+    var res = await db.insert("Song_Media", link.toMap());
+    return res;
   }
 
   //Read operations:
 
-  getSong(int id) {
+  getSong(int id) async {
+    final db = await database;
 
   }
 
@@ -112,7 +126,7 @@ class DBprovider {
 
   deleteAllSongs() async {
     final db = await database;
-    db.rawDelete("Delete * from Song");
+    db.rawDelete("Delete from Song");
   }
 
   deleteTask(int id) async {
@@ -122,7 +136,7 @@ class DBprovider {
 
   deleteAllTasks() async {
     final db = await database;
-    db.rawDelete("Delete * from Task");
+    db.rawDelete("Delete from Task");
   }
   
   deleteMedia(int id) async {
@@ -131,7 +145,8 @@ class DBprovider {
   }
 
   deleteAllMedia() async {
+    print("Deleting all media");
     final db = await database;
-    db.rawDelete("Delete * from Media");
+    db.rawDelete("Delete from Media");
   }
 }
