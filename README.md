@@ -1,6 +1,6 @@
 # GuitarSheets
 
-Progress:
+Work Progress:
   - Week 1:
     - Created Flutter project
     - Started setting up the SQLite Database
