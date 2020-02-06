@@ -93,10 +93,10 @@ class DBprovider {
     return res;
   }
 
-  //Song media table foreign key link
-  createLink(SongMedia link) async {
+  //Song media table foreign key intersection
+  createLink(SongMedia intersection) async {
     final db = await database;
-    var res = await db.insert("Song_Media", link.toMap());
+    var res = await db.insert("Song_Media", intersection.toMap());
     return res;
   }
 
@@ -104,17 +104,23 @@ class DBprovider {
 
   getSong(int id) async {
     final db = await database;
-
+    var res = await db.query("Song", where: "id = ?", whereArgs: [id]);
+    return res.isNotEmpty ? Song.fromMap(res.first) : Null;
   }
 
   getAllSongs() async {
-
+    final db = await database;
+    var res = await db.query("Song");
+    List<Song> list = res.isNotEmpty ? res.map((s) => Song.fromMap(s)).toList() : [];
+    return list;
   }
 
   //Update operations:
 
-  updateSong(Song newSong) {
-
+  updateSong(Song newSong) async {
+    final db = await database;
+    var res = await db.update("Song", newSong.toMap(), where: "id = ?", whereArgs: [newSong.id]);
+    return res;
   }
 
   //Delete operations:
