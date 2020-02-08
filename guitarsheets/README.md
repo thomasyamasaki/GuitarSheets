@@ -26,4 +26,4 @@ Work Progress:
   - Week 2:
     - Creating CRUD Operations for all of the tables
     - Testing/Debugging DB setup
-
+    - Created Bottom navigator bar
