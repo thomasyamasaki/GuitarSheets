@@ -27,3 +27,4 @@ Work Progress:
     - Creating CRUD Operations for all of the tables
     - Testing/Debugging DB setup
     - Created Bottom navigator bar
+    - Creating links to other pages from navigation bar
