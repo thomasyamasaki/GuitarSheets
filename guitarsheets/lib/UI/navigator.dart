@@ -3,6 +3,11 @@
 //Dart file for bottom navigation bar implementation
 
 import 'package:flutter/material.dart';
+import 'package:guitarsheets/UI/Views/accountpage.dart';
+import 'package:guitarsheets/UI/Views/homepage.dart';
+import 'package:guitarsheets/UI/Views/songlist.dart';
+import 'package:guitarsheets/UI/Views/songsearch.dart';
+import 'package:guitarsheets/UI/Views/testpage.dart';
 
 class AppView extends StatefulWidget {
   @override 
@@ -12,8 +17,11 @@ class AppView extends StatefulWidget {
 }
 
 class _AppViewState extends State<AppView> {
-
   int _currentIndex = 0;
+
+  List<Widget> _appviews = <Widget> [
+    HomePage(), SongList(), SongSearch(), AccountPage(), TestPage()
+  ];
 
   @override 
   Widget build(BuildContext context) {
@@ -21,6 +29,7 @@ class _AppViewState extends State<AppView> {
       appBar: AppBar(
         title: Text('Guitar Sheets')
       ),
+      body: _appviews.elementAt(_currentIndex),
       bottomNavigationBar: BottomNavigationBar(
         type: BottomNavigationBarType.fixed,
         onTap: onTabTapped,
