@@ -3,12 +3,16 @@
 //Test page for DB functions
 
 import 'package:flutter/material.dart';
+import 'package:guitarsheets/UI/Forms/taskform.dart';
 
-class TestPage extends StatelessWidget {
+class TestPage extends StatefulWidget {
+  @override 
+  _TestPageState createState() => _TestPageState();
+}
+
+class _TestPageState extends State<TestPage> {
   @override 
   Widget build(BuildContext build) {
-    return Scaffold (
-      body: Text('Here are some DB functions to play with...'),
-    );
+    return TaskForm();
   }
 }
