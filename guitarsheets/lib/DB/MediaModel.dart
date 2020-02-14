@@ -15,14 +15,14 @@ String taskToJson(Media data) {
 }
 
 class Media {
-  int id;
+  int mediaID;
   String mediaName;
   String mediaType;
   String mediaLocation;
   String mediaSize;
 
   Media({
-    this.id,
+    this.mediaID,
     this.mediaName,
     this.mediaType,
     this.mediaLocation,
@@ -30,7 +30,7 @@ class Media {
   });
 
   factory Media.fromMap(Map<String, dynamic> json) => new Media(
-    id: json["id"],
+    mediaID: json["media_id"],
     mediaName: json["media_name"],
     mediaType: json["media_type"],
     mediaLocation: json["media_location"],
@@ -38,7 +38,7 @@ class Media {
   );
 
   Map<String, dynamic> toMap() => {
-    "id": id, 
+    "media_id": mediaID, 
     "media_name": mediaName,
     "media_type": mediaType,
     "media_location": mediaLocation,

@@ -33,19 +33,19 @@ class DBprovider {
 
   initDB() async {
     Directory docDir = await getApplicationDocumentsDirectory();
-    String dbPath = join(docDir.path, "GSDB.db");
+    String dbPath = join(docDir.path, "GuitarSheetsDB.db");
     
     return await openDatabase(dbPath, version: 1, onOpen: (db) {},
     onCreate: (Database db, int version) async {
       await db.execute("CREATE TABLE Task ("
-        "id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL,"
+        "task_id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL,"
         "task_title TEXT,"
         "song TEXT,"
         "task_description TEXT"
         ")");
 
       await db.execute("CREATE TABLE Song ("
-        "id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL,"
+        "song_id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL,"
         "song_title TEXT,"
         "song_artist TEXT,"
         "song_genre TEXT,"
@@ -55,7 +55,7 @@ class DBprovider {
         ")");
 
       await db.execute("CREATE TABLE Media ("
-        "id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL,"
+        "media_id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL,"
         "media_name TEXT,"
         "media_type TEXT,"
         "media_location TEXT,"
@@ -67,10 +67,20 @@ class DBprovider {
       await db.execute("CREATE TABLE Song_Media ("
         "song_id INTEGER,"
         "media_id INTEGER,"
-        "FOREIGN KEY(song_id) REFERENCES Song(id),"
-        "FOREIGN KEY(media_id) REFERENCES Media(id)"
+        "FOREIGN KEY(song_id) REFERENCES Song(song_id),"
+        "FOREIGN KEY(media_id) REFERENCES Media(media_id)"
         ")");
-    });
+      }
+      /*onUpgrade: (Database db, int oldVersion, int newVersion) async {
+        if (oldVersion < newVersion) {
+          await db.execute("DROP TABLE IF EXISTS Task");
+          await db.execute("DROP TABLE IF EXISTS Song");
+          await db.execute("DROP TABLE IF EXISTS Media");
+          await db.execute("DROP TABLE IF EXISTS Song_Media");
+        }
+      }*/
+    );
+
   }
 
   //Create operations:
@@ -102,9 +112,9 @@ class DBprovider {
 
   //Read operations:
 
-  getSong(int id) async {
+  getSong(int songID) async {
     final db = await database;
-    var res = await db.query("Song", where: "id = ?", whereArgs: [id]);
+    var res = await db.query("Song", where: "song_id = ?", whereArgs: [songID]);
     return res.isNotEmpty ? Song.fromMap(res.first) : Null;
   }
 
@@ -119,15 +129,15 @@ class DBprovider {
 
   updateSong(Song newSong) async {
     final db = await database;
-    var res = await db.update("Song", newSong.toMap(), where: "id = ?", whereArgs: [newSong.id]);
+    var res = await db.update("Song", newSong.toMap(), where: "song_id = ?", whereArgs: [newSong.songID]);
     return res;
   }
 
   //Delete operations:
 
-  deleteSong(int id) async {
+  deleteSong(int songID) async {
     final db = await database;
-    return db.delete("Song", where: "id = ?", whereArgs: [id]);
+    return db.delete("Song", where: "id = ?", whereArgs: [songID]);
   }
 
   deleteAllSongs() async {
@@ -135,9 +145,9 @@ class DBprovider {
     db.rawDelete("Delete from Song");
   }
 
-  deleteTask(int id) async {
+  deleteTask(int taskID) async {
     final db = await database;
-    return db.delete("Task", where: "id = ?", whereArgs: [id]);
+    return db.delete("Task", where: "id = ?", whereArgs: [taskID]);
   }
 
   deleteAllTasks() async {
@@ -145,9 +155,9 @@ class DBprovider {
     db.rawDelete("Delete from Task");
   }
   
-  deleteMedia(int id) async {
+  deleteMedia(int mediaID) async {
     final db = await database;
-    return db.delete("Media", where: "id = ?", whereArgs: [id]);
+    return db.delete("Media", where: "id = ?", whereArgs: [mediaID]);
   }
 
   deleteAllMedia() async {

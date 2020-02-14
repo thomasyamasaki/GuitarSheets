@@ -15,7 +15,7 @@ String songToJson(Song data) {
 }
 
 class Song {
-  int id;
+  int songID;
   String songTitle;
   String songArtist;
   String songGenre;
@@ -24,7 +24,7 @@ class Song {
   String gdDocID;
 
   Song({
-    this.id,
+    this.songID,
     this.songTitle,
     this.songGenre,
     this.songLength,
@@ -33,7 +33,7 @@ class Song {
   });
 
   factory Song.fromMap(Map<String, dynamic> json) => new Song(
-    id: json["id"],
+    songID: json["song_id"],
     songTitle: json["song_title"],
     songGenre: json["song_genre"],
     songLength: json["song_length"],
@@ -42,7 +42,7 @@ class Song {
   );
 
   Map<String, dynamic> toMap() => {
-    "id": id,
+    "song_id": songID,
     "song_title": songTitle,
     "song_genre": songGenre,
     "song_length": songLength,

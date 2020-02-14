@@ -15,27 +15,27 @@ String taskToJson(Task data) {
 }
 
 class Task {
-  int id;
+  int taskID;
   String taskTitle;
   String song;
   String taskDescription;
 
   Task({
-    this.id,
+    this.taskID,
     this.taskTitle,
     this.song,
     this.taskDescription
   });
 
   factory Task.fromMap(Map<String, dynamic> json) => new Task(
-    id: json["id"],
+    taskID: json["task_id"],
     taskTitle: json["task_title"],
     song: json["song"],
     taskDescription: json["task_description"],
   );
 
   Map<String, dynamic> toMap() =>{
-    "id": id,
+    "task_id": taskID,
     "task_title": taskTitle,
     "song": song,
     "task_description": taskDescription,
