@@ -35,50 +35,50 @@ class DBprovider {
     Directory docDir = await getApplicationDocumentsDirectory();
     String dbPath = join(docDir.path, "GuitarSheetsDB.db");
     
-    return await openDatabase(dbPath, version: 1, onOpen: (db) {},
+    return await openDatabase(dbPath, version: 2, onOpen: (db) {},
     onCreate: (Database db, int version) async {
       await db.execute("CREATE TABLE Task ("
-        "task_id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL,"
-        "task_title TEXT,"
-        "song TEXT,"
-        "task_description TEXT"
+        "Task_ID INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL,"
+        "Task_Title TEXT,"
+        "Song TEXT,"
+        "Task_Description TEXT"
         ")");
 
       await db.execute("CREATE TABLE Song ("
-        "song_id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL,"
-        "song_title TEXT,"
-        "song_artist TEXT,"
-        "song_genre TEXT,"
-        "song_length TEXT,"
-        "songsterr_url TEXT,"
-        "gd_doc_id TEXT"
+        "Song_ID INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL,"
+        "Song_Title TEXT,"
+        "Song_Artist TEXT,"
+        "Song_Genre TEXT,"
+        "Song_Length TEXT,"
+        "Songsterr_URL TEXT,"
+        "GD_Doc_ID TEXT"
         ")");
 
       await db.execute("CREATE TABLE Media ("
-        "media_id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL,"
-        "media_name TEXT,"
-        "media_type TEXT,"
-        "media_location TEXT,"
-        "media_size TEXT"
+        "Media_ID INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL,"
+        "Media_Name TEXT,"
+        "Media_Type TEXT,"
+        "Media_Location TEXT,"
+        "Media_Size TEXT"
         ")");
 
       await db.execute('PRAGMA foreign_keys = ON');
 
       await db.execute("CREATE TABLE Song_Media ("
-        "song_id INTEGER,"
-        "media_id INTEGER,"
-        "FOREIGN KEY(song_id) REFERENCES Song(song_id),"
-        "FOREIGN KEY(media_id) REFERENCES Media(media_id)"
+        "Song_ID INTEGER,"
+        "Media_ID INTEGER,"
+        "FOREIGN KEY(Song_ID) REFERENCES Song(Song_ID),"
+        "FOREIGN KEY(Media_ID) REFERENCES Media(Media_ID)"
         ")");
-      }
-      /*onUpgrade: (Database db, int oldVersion, int newVersion) async {
+      },
+      onUpgrade: (Database db, int oldVersion, int newVersion) async {
         if (oldVersion < newVersion) {
           await db.execute("DROP TABLE IF EXISTS Task");
           await db.execute("DROP TABLE IF EXISTS Song");
           await db.execute("DROP TABLE IF EXISTS Media");
           await db.execute("DROP TABLE IF EXISTS Song_Media");
         }
-      }*/
+      }
     );
 
   }
@@ -114,7 +114,7 @@ class DBprovider {
 
   getSong(int songID) async {
     final db = await database;
-    var res = await db.query("Song", where: "song_id = ?", whereArgs: [songID]);
+    var res = await db.query("Song", where: "Song_ID = ?", whereArgs: [songID]);
     return res.isNotEmpty ? Song.fromMap(res.first) : Null;
   }
 
@@ -129,7 +129,7 @@ class DBprovider {
 
   updateSong(Song newSong) async {
     final db = await database;
-    var res = await db.update("Song", newSong.toMap(), where: "song_id = ?", whereArgs: [newSong.songID]);
+    var res = await db.update("Song", newSong.toMap(), where: "Song_ID = ?", whereArgs: [newSong.songID]);
     return res;
   }
 
@@ -137,7 +137,7 @@ class DBprovider {
 
   deleteSong(int songID) async {
     final db = await database;
-    return db.delete("Song", where: "id = ?", whereArgs: [songID]);
+    return db.delete("Song", where: "Song_ID = ?", whereArgs: [songID]);
   }
 
   deleteAllSongs() async {
@@ -147,7 +147,7 @@ class DBprovider {
 
   deleteTask(int taskID) async {
     final db = await database;
-    return db.delete("Task", where: "id = ?", whereArgs: [taskID]);
+    return db.delete("Task", where: "Task_ID = ?", whereArgs: [taskID]);
   }
 
   deleteAllTasks() async {
@@ -157,7 +157,7 @@ class DBprovider {
   
   deleteMedia(int mediaID) async {
     final db = await database;
-    return db.delete("Media", where: "id = ?", whereArgs: [mediaID]);
+    return db.delete("Media", where: "Media_ID = ?", whereArgs: [mediaID]);
   }
 
   deleteAllMedia() async {

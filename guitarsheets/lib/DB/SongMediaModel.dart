@@ -24,12 +24,12 @@ class SongMedia {
   });
 
   factory SongMedia.fromMap(Map<String, dynamic> json) => new SongMedia(
-    songID: json["song_id"],
-    mediaID: json["media_id"],
+    songID: json["Song_ID"],
+    mediaID: json["Media_ID"],
   );
 
   Map<String, dynamic> toMap() => {
-    "song_id": songID,
-    "media_id": mediaID,
+    "Song_ID": songID,
+    "Media_ID": mediaID,
   };
 }

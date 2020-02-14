@@ -28,16 +28,16 @@ class Task {
   });
 
   factory Task.fromMap(Map<String, dynamic> json) => new Task(
-    taskID: json["task_id"],
-    taskTitle: json["task_title"],
-    song: json["song"],
-    taskDescription: json["task_description"],
+    taskID: json["Task_ID"],
+    taskTitle: json["Task_Title"],
+    song: json["Song"],
+    taskDescription: json["Task_Description"],
   );
 
   Map<String, dynamic> toMap() =>{
-    "task_id": taskID,
-    "task_title": taskTitle,
-    "song": song,
-    "task_description": taskDescription,
+    "Task_ID": taskID,
+    "Task_Title": taskTitle,
+    "Song": song,
+    "Task_Description": taskDescription,
   };
 }

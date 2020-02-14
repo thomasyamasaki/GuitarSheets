@@ -33,20 +33,20 @@ class Song {
   });
 
   factory Song.fromMap(Map<String, dynamic> json) => new Song(
-    songID: json["song_id"],
-    songTitle: json["song_title"],
-    songGenre: json["song_genre"],
-    songLength: json["song_length"],
-    songsterrURL: json["songsterr_url"],
-    gdDocID: json["gd_doc_id"],
+    songID: json["Song_ID"],
+    songTitle: json["Song_Title"],
+    songGenre: json["Song_Genre"],
+    songLength: json["Song_Length"],
+    songsterrURL: json["Songsterr_URL"],
+    gdDocID: json["GD_Doc_ID"],
   );
 
   Map<String, dynamic> toMap() => {
-    "song_id": songID,
-    "song_title": songTitle,
-    "song_genre": songGenre,
-    "song_length": songLength,
-    "songsterr_url": songsterrURL,
-    "gd_doc_id": gdDocID,
+    "Song_ID": songID,
+    "Song_Title": songTitle,
+    "Song_Genre": songGenre,
+    "Song_Length": songLength,
+    "Songsterr_URL": songsterrURL,
+    "GD_Doc_ID": gdDocID,
   };
 }

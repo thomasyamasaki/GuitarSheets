@@ -30,18 +30,18 @@ class Media {
   });
 
   factory Media.fromMap(Map<String, dynamic> json) => new Media(
-    mediaID: json["media_id"],
-    mediaName: json["media_name"],
-    mediaType: json["media_type"],
-    mediaLocation: json["media_location"],
-    mediaSize: json["media_size"],
+    mediaID: json["Media_ID"],
+    mediaName: json["Media_Name"],
+    mediaType: json["Media_Type"],
+    mediaLocation: json["Media_Location"],
+    mediaSize: json["Media_Size"],
   );
 
   Map<String, dynamic> toMap() => {
-    "media_id": mediaID, 
-    "media_name": mediaName,
-    "media_type": mediaType,
-    "media_location": mediaLocation,
-    "media_size": mediaSize,
+    "Media_ID": mediaID, 
+    "Media_Name": mediaName,
+    "Media_Type": mediaType,
+    "Media_Location": mediaLocation,
+    "Media_Size": mediaSize,
   };
 }
