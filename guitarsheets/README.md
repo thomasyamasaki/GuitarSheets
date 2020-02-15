@@ -1,6 +1,8 @@
-# guitarsheets
+# Guitar Sheets
 
-A new Flutter project.
+Spring 2020 Comp 499 Capstone project
+Provides tools for guitarists to store and view their song repertoire as well as keep track of tasks to complete in practice sessions
+
 
 ## Getting Started
 
@@ -14,17 +16,3 @@ A few resources to get you started if this is your first Flutter project:
 For help getting started with Flutter, view our
 [online documentation](https://flutter.dev/docs), which offers tutorials,
 samples, guidance on mobile development, and a full API reference.
-
-# GuitarSheets
-
-Work Progress:
-  - Week 1:
-    - Created Flutter project
-    - Started setting up the SQLite Database
-    - Wrote the Create table statements
-    - Created Model files for each table
-  - Week 2:
-    - Creating CRUD Operations for all of the tables
-    - Testing/Debugging DB setup
-    - Created Bottom navigator bar
-    - Creating links to other pages from navigation bar
