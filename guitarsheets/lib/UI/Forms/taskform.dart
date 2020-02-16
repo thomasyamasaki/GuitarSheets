@@ -45,6 +45,15 @@ class _TaskFormState extends State<TaskForm> {
                       final form = _formKey.currentState;
                       form.save();
                       DBprovider.db.insertTask(_task);
+                      Navigator.pop(context);
+                    }),
+                ),
+                Container(padding: const EdgeInsets.symmetric(
+                  vertical: 16.0, horizontal: 16.0),
+                  child: RaisedButton(
+                    child: Text('Cancel'),
+                    onPressed: () {
+                      Navigator.pop(context);
                     }),
                 )
               ]

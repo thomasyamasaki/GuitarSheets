@@ -26,9 +26,7 @@ class _AppViewState extends State<AppView> {
   @override 
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text('Guitar Sheets')
-      ),
+      appBar: AppBar(title: Text('Guitar Sheets')),
       body: _appviews.elementAt(_currentIndex),
       bottomNavigationBar: BottomNavigationBar(
         type: BottomNavigationBarType.fixed,

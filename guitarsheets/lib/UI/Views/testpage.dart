@@ -3,7 +3,7 @@
 //Test page for DB functions
 
 import 'package:flutter/material.dart';
-import 'package:guitarsheets/UI/Forms/taskform.dart';
+import 'package:guitarsheets/UI/Forms/songform.dart';
 
 class TestPage extends StatefulWidget {
   @override 
@@ -13,6 +13,6 @@ class TestPage extends StatefulWidget {
 class _TestPageState extends State<TestPage> {
   @override 
   Widget build(BuildContext build) {
-    return TaskForm();
+    return SongForm();
   }
 }

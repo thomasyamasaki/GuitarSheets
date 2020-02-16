@@ -71,6 +71,7 @@ class DBprovider {
         "FOREIGN KEY(Media_ID) REFERENCES Media(Media_ID)"
         ")");
       },
+      
       onUpgrade: (Database db, int oldVersion, int newVersion) async {
         if (oldVersion < newVersion) {
           await db.execute("DROP TABLE IF EXISTS Task");
@@ -118,10 +119,36 @@ class DBprovider {
     return res.isNotEmpty ? Song.fromMap(res.first) : Null;
   }
 
-  getAllSongs() async {
+  Future<List<Song>> getAllSongs() async {
     final db = await database;
     var res = await db.query("Song");
     List<Song> list = res.isNotEmpty ? res.map((s) => Song.fromMap(s)).toList() : [];
+    return list;
+  }
+
+  getTask(int taskID) async {
+    final db = await database;
+    var res = await db.query("Task", where: "Task_ID = ?", whereArgs: [taskID]);
+    return res.isNotEmpty ? Task.fromMap(res.first) : Null;
+  }
+
+  Future<List<Task>> getAllTasks() async {
+    final db = await database;
+    var res = await db.query("Task");
+    List<Task> list = res.isNotEmpty ? res.map((s) => Task.fromMap(s)).toList() : [];
+    return list;
+  }
+
+  getMedia(int mediaID) async {
+    final db = await database;
+    var res = await db.query("Media", where: "Media_ID = ?", whereArgs: [mediaID]);
+    return res.isNotEmpty ? Media.fromMap(res.first) : Null;
+  }
+
+  Future<List<Media>> getAllMedia() async {
+    final db = await database;
+    var res = await db.query("Media");
+    List<Media> list = res.isNotEmpty ? res.map((s) => Media.fromMap(s)).toList() : [];
     return list;
   }
 
@@ -130,6 +157,18 @@ class DBprovider {
   updateSong(Song newSong) async {
     final db = await database;
     var res = await db.update("Song", newSong.toMap(), where: "Song_ID = ?", whereArgs: [newSong.songID]);
+    return res;
+  }
+
+  updateTask(Task newTask) async {
+    final db = await database;
+    var res = await db.update("Task", newTask.toMap(), where: "Task_ID = ?", whereArgs: [newTask.taskID]);
+    return res;
+  }
+
+  updateMedia(Media newMedia) async {
+    final db = await database;
+    var res = await db.update("Media", newMedia.toMap(), where: "Media_ID = ?", whereArgs: [newMedia.mediaID]);
     return res;
   }
 
