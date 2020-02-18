@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:guitarsheets/DB/Database.dart';
 import 'package:guitarsheets/DB/TaskModel.dart';
 import 'package:guitarsheets/UI/Forms/taskform.dart';
+import 'package:guitarsheets/UI/Views/taskdetailspage.dart';
 
 class HomePage extends StatefulWidget{
   @override 
@@ -28,13 +29,21 @@ class _HomePageState extends State<HomePage> {
                   }),
                 new Expanded(
                   child: ListView.builder(
-                    padding: const EdgeInsets.symmetric(vertical: 16.0, horizontal: 16.0),
+                    //padding: const EdgeInsets.symmetric(horizontal: 16.0),
                     itemCount: todoList.data.length,
                     itemBuilder: (BuildContext context, int index) {
                       Task task = todoList.data[index];
-                      return new RaisedButton(
-                        child: Text(task.taskTitle),
-                        onPressed: () {}
+                      return new Card(
+                        child: ListTile(
+                          title: Text(task.taskTitle),
+                          onTap: () {
+                            Navigator.push(context, 
+                              MaterialPageRoute(
+                                builder: (context) => TaskDetailsPage(task: todoList.data[index])
+                              )
+                            );
+                          }
+                        )
                       );
                     }
                   )
