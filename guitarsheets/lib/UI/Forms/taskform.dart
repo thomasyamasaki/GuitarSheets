@@ -25,8 +25,7 @@ class _TaskFormState extends State<TaskForm> {
         child: Builder(
           builder: (context) => Form(
             key:_formKey,
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.stretch,
+            child: ListView(
               children: [
                 Text('Task Form'),
                 TextFormField(decoration: 
@@ -50,7 +49,7 @@ class _TaskFormState extends State<TaskForm> {
                     }),
                 ),
                 Container(padding: const EdgeInsets.symmetric(
-                  vertical: 16.0, horizontal: 16.0),
+                  horizontal: 16.0),
                   child: RaisedButton(
                     child: Text('Cancel'),
                     onPressed: () {

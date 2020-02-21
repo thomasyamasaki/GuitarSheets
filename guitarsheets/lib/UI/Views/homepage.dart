@@ -13,6 +13,12 @@ class _HomePageState extends State<HomePage> {
   @override 
   Widget build(BuildContext context) {
     return Scaffold(
+      floatingActionButton: 
+        FloatingActionButton(child: Icon(Icons.add),
+          onPressed: () {
+            Navigator.push(context, MaterialPageRoute(builder: (context) => TaskForm()));
+          }
+        ),
       body: FutureBuilder(
         future: DBprovider.db.getAllTasks(),
         builder: (BuildContext context, AsyncSnapshot<List<Task>> todoList) {
@@ -22,14 +28,14 @@ class _HomePageState extends State<HomePage> {
                 Text('To-do List', 
                   textAlign: TextAlign.center,
                   style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20)),
-                new RaisedButton(
+                /*new RaisedButton(
                   child: Text('Add new Task'),
                   onPressed: () {
                     Navigator.push(context, MaterialPageRoute(builder: (context) => TaskForm()));
-                  }),
+                  }),*/
                 new Expanded(
                   child: ListView.builder(
-                    //padding: const EdgeInsets.symmetric(horizontal: 16.0),
+                    padding: const EdgeInsets.symmetric(vertical: 16.0, horizontal: 16.0),
                     itemCount: todoList.data.length,
                     itemBuilder: (BuildContext context, int index) {
                       Task task = todoList.data[index];
@@ -47,7 +53,7 @@ class _HomePageState extends State<HomePage> {
                       );
                     }
                   )
-                )
+                ),
               ]
             );
           }

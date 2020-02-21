@@ -5,6 +5,7 @@
 import 'package:flutter/material.dart';
 import 'package:guitarsheets/DB/Database.dart';
 import 'package:guitarsheets/DB/TaskModel.dart';
+import 'package:guitarsheets/UI/Forms/edittaskform.dart';
 
 class TaskDetailsPage extends StatefulWidget {
   final Task task;
@@ -28,8 +29,7 @@ class _TaskDetailState extends State<TaskDetailsPage> {
       appBar: AppBar(title: Text('Task Details')),
       body: Container(
         padding: EdgeInsets.symmetric(vertical: 16.0, horizontal: 16.0),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.stretch,
+        child: ListView(
           children: <Widget> [
             Text(task.taskTitle + '\n',
               //textAlign: TextAlign.center,
@@ -51,7 +51,14 @@ class _TaskDetailState extends State<TaskDetailsPage> {
             ),
             RaisedButton(
               child: Text('Edit Task'),
-              onPressed: (){},
+              onPressed: (){
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => EditTaskForm(task: task)
+                  )
+                );
+              },
             ),
             RaisedButton(
               child: Text('Mark as Complete'),
