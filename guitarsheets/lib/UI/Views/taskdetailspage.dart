@@ -26,14 +26,18 @@ class _TaskDetailState extends State<TaskDetailsPage> {
   @override 
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text('Task Details')),
+      appBar: AppBar(title: Text('Task Details'),
+        backgroundColor: Colors.black,
+      ),
+      backgroundColor: Colors.red[700],
       body: Container(
         padding: EdgeInsets.symmetric(vertical: 16.0, horizontal: 16.0),
         child: ListView(
           children: <Widget> [
             Text(task.taskTitle + '\n',
               //textAlign: TextAlign.center,
-              style: TextStyle(fontWeight: FontWeight.bold, fontSize: 30),
+              style: TextStyle(fontWeight: FontWeight.bold, fontSize: 30
+              ),
             ),
             Text('Song:',
               //textAlign: TextAlign.center,
@@ -50,6 +54,7 @@ class _TaskDetailState extends State<TaskDetailsPage> {
               style: TextStyle(fontSize: 20),
             ),
             RaisedButton(
+              color: Colors.white,
               child: Text('Edit Task'),
               onPressed: (){
                 Navigator.push(
@@ -61,6 +66,7 @@ class _TaskDetailState extends State<TaskDetailsPage> {
               },
             ),
             RaisedButton(
+              color: Colors.white,
               child: Text('Mark as Complete'),
               onPressed: (){
                 DBprovider.db.deleteTask(task.taskID);

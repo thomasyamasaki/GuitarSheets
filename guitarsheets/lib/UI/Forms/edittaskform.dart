@@ -26,7 +26,10 @@ class _EditTaskState extends State<EditTaskForm> {
   @override 
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text('Edit Task')),
+      backgroundColor: Colors.red[700],
+      appBar: AppBar(title: Text('Edit Task'),
+        backgroundColor: Colors.black,
+      ),
       body: Container(
         padding: 
           const EdgeInsets.symmetric(vertical: 16.0, horizontal: 16.0),
@@ -54,6 +57,7 @@ class _EditTaskState extends State<EditTaskForm> {
                 ),
                 Container(padding: const EdgeInsets.symmetric(vertical: 16.0, horizontal: 16.0),
                   child: RaisedButton(
+                    color: Colors.white,
                     child: Text('Save'),
                     onPressed: () {
                       final form = _formKey.currentState;
@@ -65,6 +69,7 @@ class _EditTaskState extends State<EditTaskForm> {
                 ),
                 Container(padding: const EdgeInsets.symmetric(vertical: 16.0, horizontal: 16.0),
                   child: RaisedButton( 
+                    color: Colors.white,
                     child: Text('Cancel'),
                     onPressed: () {
                       Navigator.pop(context);

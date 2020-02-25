@@ -13,8 +13,10 @@ class _HomePageState extends State<HomePage> {
   @override 
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.red[700],
       floatingActionButton: 
         FloatingActionButton(child: Icon(Icons.add),
+          backgroundColor: Colors.black,
           onPressed: () {
             Navigator.push(context, MaterialPageRoute(builder: (context) => TaskForm()));
           }
@@ -40,6 +42,7 @@ class _HomePageState extends State<HomePage> {
                     itemBuilder: (BuildContext context, int index) {
                       Task task = todoList.data[index];
                       return new Card(
+                        color: Colors.red[400],
                         child: ListTile(
                           title: Text(task.taskTitle),
                           onTap: () {
