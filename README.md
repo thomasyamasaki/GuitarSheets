@@ -6,6 +6,7 @@ Here is a list of progress I have made throughout the weeks for reference
 
 Work Progress:
   - Week 1:
+    - Sprint 1 begins
     - Created Flutter project
     - Started setting up the SQLite Database
     - Wrote the Create table statements
@@ -21,6 +22,11 @@ Work Progress:
     - Created Task Details view
     - Integrated Create, Read and Delete functions with Home page view
     - Started Update functionality
-    - Started on form to add rows to Song table
   - Week 4:
-  
+    - Update Task Functionality completed
+    - Experimented with UI Color Scheme
+    - UI buttons cleaned up
+    - Sprint 1 ended
+  - Week 5:
+    - Sprint 2 begins
+    - Started on form to add rows to Song table
