@@ -121,7 +121,8 @@ class DBprovider {
 
   Future<List<Song>> getAllSongs() async {
     final db = await database;
-    var res = await db.query("Song");
+    //var res = await db.query("Song");
+    var res = await db.rawQuery('SELECT * FROM Song ORDER BY Song_Title ASC');
     List<Song> list = res.isNotEmpty ? res.map((s) => Song.fromMap(s)).toList() : [];
     return list;
   }

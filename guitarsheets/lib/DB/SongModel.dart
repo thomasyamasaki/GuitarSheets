@@ -26,6 +26,7 @@ class Song {
   Song({
     this.songID,
     this.songTitle,
+    this.songArtist,
     this.songGenre,
     this.songLength,
     this.songsterrURL,
@@ -35,6 +36,7 @@ class Song {
   factory Song.fromMap(Map<String, dynamic> json) => new Song(
     songID: json["Song_ID"],
     songTitle: json["Song_Title"],
+    songArtist: json["Song_Artist"],
     songGenre: json["Song_Genre"],
     songLength: json["Song_Length"],
     songsterrURL: json["Songsterr_URL"],
@@ -44,6 +46,7 @@ class Song {
   Map<String, dynamic> toMap() => {
     "Song_ID": songID,
     "Song_Title": songTitle,
+    "Song_Artist": songArtist,
     "Song_Genre": songGenre,
     "Song_Length": songLength,
     "Songsterr_URL": songsterrURL,
