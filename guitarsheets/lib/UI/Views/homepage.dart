@@ -42,7 +42,7 @@ class _HomePageState extends State<HomePage> {
                     itemBuilder: (BuildContext context, int index) {
                       Task task = todoList.data[index];
                       return new Card(
-                        color: Colors.red[400],
+                        color: Colors.grey[100],
                         child: ListTile(
                           title: Text(task.taskTitle),
                           onTap: () {

@@ -3,11 +3,11 @@
 //Dart file for bottom navigation bar implementation
 
 import 'package:flutter/material.dart';
-import 'package:guitarsheets/UI/Views/accountpage.dart';
+//import 'package:guitarsheets/UI/Views/accountpage.dart';
 import 'package:guitarsheets/UI/Views/homepage.dart';
 import 'package:guitarsheets/UI/Views/songlist.dart';
 import 'package:guitarsheets/UI/Views/songsearch.dart';
-import 'package:guitarsheets/UI/Views/testpage.dart';
+//import 'package:guitarsheets/UI/Views/testpage.dart';
 
 class AppView extends StatefulWidget {
   @override 
@@ -20,16 +20,21 @@ class _AppViewState extends State<AppView> {
   int _currentIndex = 0;
 
   List<Widget> _appviews = <Widget> [
-    HomePage(), SongList(), SongSearch(), AccountPage(), TestPage()
+    HomePage(), SongList(), SongSearch()//, AccountPage(), TestPage()
   ];
 
   @override 
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text('Guitar Sheets')),
+      appBar: AppBar(title: Text('Guitar Sheets'),
+        backgroundColor: Colors.black,
+      ),
       body: _appviews.elementAt(_currentIndex),
       bottomNavigationBar: BottomNavigationBar(
         type: BottomNavigationBarType.fixed,
+        backgroundColor: Colors.black,
+        unselectedItemColor: Colors.white,
+        selectedItemColor: Colors.blue[700],
         onTap: onTabTapped,
         currentIndex: _currentIndex,
         items: [
@@ -48,15 +53,15 @@ class _AppViewState extends State<AppView> {
             title: Text('Search')
           ),
 
-          BottomNavigationBarItem(
+          /*BottomNavigationBarItem(
             icon: Icon(Icons.person),
             title: Text('Accounts')
-          ),
+          ),*/
 
-          BottomNavigationBarItem(
+          /*BottomNavigationBarItem(
             icon: Icon(Icons.vpn_key),
             title: Text('Test')
-          )
+          )*/
           
         ]
       )
