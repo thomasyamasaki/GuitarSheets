@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:guitarsheets/DB/Database.dart';
 import 'package:guitarsheets/DB/SongModel.dart';
 import 'package:guitarsheets/UI/Forms/editsongform.dart';
+import 'package:guitarsheets/UI/Views/webview.dart';
 
 class SongDetailsPage extends StatefulWidget {
   final Song song;
@@ -22,6 +23,7 @@ class _SongDetailState extends State<SongDetailsPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        backgroundColor: Colors.black,
         title: Text('Song Details'),
       ),
 
@@ -57,6 +59,16 @@ class _SongDetailState extends State<SongDetailsPage> {
               style: TextStyle(fontSize: 20),
             ),
 
+            RaisedButton(
+              child: Text('Songsterr tabs'),
+              onPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => WebViewPage(url: 'https://songsterr.com'))
+                );
+              },
+            ),
+
             RaisedButton( 
               child: Text('Edit Song'),
               onPressed: (){
@@ -68,6 +80,7 @@ class _SongDetailState extends State<SongDetailsPage> {
                 );
               },
             ),
+            
           ],
         ),
       ),
