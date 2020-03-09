@@ -30,3 +30,11 @@ Work Progress:
   - Week 5:
     - Sprint 2 begins
     - Started on form to add rows to Song table
+	- Add Song form functional
+  - Week 6:
+    - Basic Song list functionality added
+	- Edit Song form functional
+	- Song details page functional
+	- Short break for physics midterm and other class assignments
+  - Week 7:
+    - Implementing Webview for Songsterr tabs
