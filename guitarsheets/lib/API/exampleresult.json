@@ -1,0 +1,20 @@
+
+{
+   "id":259,
+   "type":"Song",
+   "title":"Redemption Song",
+   "artist":{
+      "id":58,
+      "type":"Artist",
+      "nameWithoutThePrefix":"Bob Marley",
+      "useThePrefix":false,
+      "name":"Bob Marley"
+   },
+   "chordsPresent":true,
+   "tabTypes":[
+      "PLAYER",
+      "TEXT_GUITAR_TAB",
+      "CHORDS",
+      "TEXT_BASS_TAB"
+   ]
+}

@@ -1,10 +1,15 @@
 import 'package:flutter/material.dart';
 
-class SongSearch extends StatelessWidget {
+class SongSearch extends StatefulWidget {
   @override 
-  Widget build(BuildContext build) {
-    return Scaffold (
-      body: Text('Here is where the song search page should be...'),
+  _SongSearchState createState() => _SongSearchState();
+}
+
+class _SongSearchState extends State<SongSearch> {
+  @override 
+  Widget build(BuildContext context) {
+    return Scaffold(
+      body: Text('Here is song search'),
     );
   }
 }

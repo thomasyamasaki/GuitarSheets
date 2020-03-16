@@ -5,14 +5,21 @@
 import 'package:flutter/material.dart';
 import 'package:guitarsheets/UI/Forms/songform.dart';
 
-class TestPage extends StatefulWidget {
+class TestPage extends StatelessWidget {
   @override 
-  _TestPageState createState() => _TestPageState();
-}
-
-class _TestPageState extends State<TestPage> {
-  @override 
-  Widget build(BuildContext build) {
-    return SongForm();
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(backgroundColor: Colors.black,),
+      body: Center(
+        child: Text(
+          "Error: No Songsterr tab URL stored",
+          textAlign: TextAlign.center,
+          style: TextStyle(
+            fontWeight: FontWeight.bold,
+            fontSize: 24
+          ),
+        ),
+      )
+    );
   }
 }

@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:guitarsheets/DB/Database.dart';
+//import 'package:guitarsheets/API/songsterr_parser.dart';
+//import 'package:guitarsheets/DB/Database.dart';
 import 'package:guitarsheets/DB/SongModel.dart';
 import 'package:guitarsheets/UI/Forms/editsongform.dart';
+import 'package:guitarsheets/UI/Views/testpage.dart';
 import 'package:guitarsheets/UI/Views/webview.dart';
 
 class SongDetailsPage extends StatefulWidget {
@@ -62,10 +64,16 @@ class _SongDetailState extends State<SongDetailsPage> {
             RaisedButton(
               child: Text('Songsterr tabs'),
               onPressed: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(builder: (context) => WebViewPage(url: 'https://songsterr.com'))
-                );
+                if (song.songsterrURL == null) {
+                  Navigator.push(context, 
+                    MaterialPageRoute(builder: (context) => TestPage())
+                  );
+                }
+                else {
+                  Navigator.push(context,
+                    MaterialPageRoute(builder: (context) => WebViewPage(url: song.songsterrURL))
+                  );
+                }
               },
             ),
 
@@ -80,6 +88,21 @@ class _SongDetailState extends State<SongDetailsPage> {
                 );
               },
             ),
+
+            /*Row(
+              children: <Widget>[
+                Expanded(
+                  child:
+                    FlatButton(child: Text('Heres Johnny'), onPressed: (){}, )
+                  
+                ),
+                Column(
+                  children: <Widget>[
+                    IconButton(icon: Icon(Icons.visibility), onPressed: (){},)
+                  ],
+                )
+              ],
+            ),*/
             
           ],
         ),

@@ -37,4 +37,8 @@ Work Progress:
 	- Song details page functional
 	- Short break for physics midterm and other class assignments
   - Week 7:
-    - Implementing Webview for Songsterr tabs
+    - Implemented Webview
+	- Implemented API parser
+	- Implemented Search for tabs via API
+  - Week 8:
+  	- Implementing other media views
