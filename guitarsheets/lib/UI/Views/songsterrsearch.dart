@@ -7,18 +7,24 @@ import 'package:guitarsheets/DB/SongModel.dart';
 
 class SongsterrSearch extends StatefulWidget {
   final Song song;
+  final TextEditingController titlecon;
+  final TextEditingController artistcon;
 
-  SongsterrSearch({Key key, @required this.song}): super(key: key);
+  SongsterrSearch({Key key, @required this.song, this.titlecon, this.artistcon}): super(key: key);
 
   @override 
-  _SongsterrSearchState createState() => _SongsterrSearchState(song);
+  _SongsterrSearchState createState() => _SongsterrSearchState(song, titlecon, artistcon);
 }
 
 class _SongsterrSearchState extends State<SongsterrSearch> {
   Song song;
+  TextEditingController titlecon;
+  TextEditingController artistcon;
 
-  _SongsterrSearchState(Song song) {
+  _SongsterrSearchState(Song song, TextEditingController titlecon, TextEditingController artistcon) {
     this.song = song;
+    this.titlecon = titlecon;
+    this.artistcon = artistcon;
   }
 
   @override 
@@ -38,6 +44,15 @@ class _SongsterrSearchState extends State<SongsterrSearch> {
                     onTap: (){
                       setState(() {
                         song.songsterrURL = result.surl;
+                        if (titlecon.text.isEmpty == true) {
+                          titlecon.text = result.stitle;
+                          titlecon.selection= TextSelection.fromPosition(TextPosition(offset: titlecon.text.length));
+                        }
+                        if (artistcon.text.isEmpty == true) {
+                          artistcon.text = result.sartist;
+                          artistcon.selection = TextSelection.fromPosition(TextPosition(offset: artistcon.text.length));
+                        }
+
                       });
                       Navigator.pop(context);
                     },

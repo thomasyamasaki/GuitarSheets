@@ -10,6 +10,13 @@ class HomePage extends StatefulWidget{
 }
 
 class _HomePageState extends State<HomePage> {
+  List<Color> _colors = [
+    Colors.grey,
+    Colors.green
+  ];
+
+  int _colorsIndex = 0;
+
   @override 
   Widget build(BuildContext context) {
     return Scaffold(
@@ -41,10 +48,25 @@ class _HomePageState extends State<HomePage> {
                     itemCount: todoList.data.length,
                     itemBuilder: (BuildContext context, int index) {
                       Task task = todoList.data[index];
-                      return new Card(
+                      return Card(
                         color: Colors.grey[100],
                         child: ListTile(
                           title: Text(task.taskTitle),
+                          leading: Column(
+                            children: <Widget> [
+                              IconButton( 
+                                icon: Icon(Icons.check_circle, ),
+                                onPressed: (){
+                                  setState(() {
+                                    DBprovider.db.deleteTask(todoList.data[index].taskID);
+                                    Scaffold.of(context).showSnackBar(
+                                      SnackBar(content: Text('Marked task as complete'),)
+                                    );
+                                  });
+                                },
+                              )
+                            ]
+                          ),
                           onTap: () {
                             Navigator.push(context, 
                               MaterialPageRoute(

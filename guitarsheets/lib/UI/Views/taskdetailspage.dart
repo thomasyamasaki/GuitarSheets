@@ -65,14 +65,14 @@ class _TaskDetailState extends State<TaskDetailsPage> {
                 );
               },
             ),
-            RaisedButton(
+            /*RaisedButton(
               color: Colors.white,
               child: Text('Mark as Complete'),
               onPressed: (){
                 DBprovider.db.deleteTask(task.taskID);
                 Navigator.pop(context);
               },
-            )
+            )*/
           ]
         ),
       )
