@@ -15,6 +15,14 @@ class SongForm extends StatefulWidget {
 class _SongFormState extends State<SongForm> {
   final _formKey = GlobalKey<FormState>();
   final _song = Song();
+  final _titlecontroller = TextEditingController();
+  final _artistcontroller = TextEditingController();
+
+  void dispose() {
+    _titlecontroller.dispose();
+    _artistcontroller.dispose();
+    super.dispose();
+  }
 
   @override 
   Widget build(BuildContext context) {
@@ -32,9 +40,11 @@ class _SongFormState extends State<SongForm> {
                 Text('Song Form'),
                 TextFormField(decoration:
                   InputDecoration(labelText: 'Song Title'),
+                  controller: _titlecontroller,
                   onSaved: (val) => setState(() => _song.songTitle = val)),
                 TextFormField(decoration:
                   InputDecoration(labelText: 'Song Artist'),
+                  controller: _artistcontroller,
                   onSaved: (val) => setState(() => _song.songArtist = val)),
                 TextFormField(decoration:
                   InputDecoration(labelText: 'Song Genre'),
@@ -51,7 +61,10 @@ class _SongFormState extends State<SongForm> {
                         child: RaisedButton(
                           child: Text('Songsterr Tabs Search'),
                           onPressed: (){
-                            Navigator.push(context, MaterialPageRoute(builder: (context) => SongsterrSearch(song: _song,)));
+                            Navigator.push(
+                              context, MaterialPageRoute(
+                                builder: (context) => SongsterrSearch(song: _song,
+                                  titlecon: _titlecontroller, artistcon: _artistcontroller,)));
                           }
                         ),
                       ),

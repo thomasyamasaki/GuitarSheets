@@ -6,7 +6,7 @@ import 'package:flutter/material.dart';
 //import 'package:guitarsheets/UI/Views/accountpage.dart';
 import 'package:guitarsheets/UI/Views/homepage.dart';
 import 'package:guitarsheets/UI/Views/songlist.dart';
-import 'package:guitarsheets/UI/Views/songsearch.dart';
+//import 'package:guitarsheets/UI/Views/songsearch.dart';
 //import 'package:guitarsheets/UI/Views/testpage.dart';
 
 class AppView extends StatefulWidget {
@@ -20,7 +20,7 @@ class _AppViewState extends State<AppView> {
   int _currentIndex = 0;
 
   List<Widget> _appviews = <Widget> [
-    HomePage(), SongList(), SongSearch()//, AccountPage(), TestPage()
+    HomePage(), SongList()//, SongSearch()//, AccountPage(), TestPage()
   ];
 
   @override 
@@ -39,19 +39,19 @@ class _AppViewState extends State<AppView> {
         currentIndex: _currentIndex,
         items: [
           BottomNavigationBarItem(
-            icon: Icon(Icons.home),
-            title: Text('Home')
-          ),
-
-          BottomNavigationBarItem(
             icon: Icon(Icons.list),
-            title: Text('List')
+            title: Text('Tasks')
           ),
 
           BottomNavigationBarItem(
+            icon: Icon(Icons.music_note),
+            title: Text('Songs')
+          ),
+
+          /*BottomNavigationBarItem(
             icon: Icon(Icons.search),
             title: Text('Search')
-          ),
+          ),*/
 
           /*BottomNavigationBarItem(
             icon: Icon(Icons.person),
