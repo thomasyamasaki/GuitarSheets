@@ -27,7 +27,10 @@ class _SongFormState extends State<SongForm> {
   @override 
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(backgroundColor: Colors.black,),
+      appBar: AppBar(
+        backgroundColor: Colors.black,
+        title: Text('New Song'),
+      ),
       body: Container(
         padding: const EdgeInsets.symmetric(vertical: 16.0, horizontal: 16.0),
         child: Builder(
