@@ -89,6 +89,7 @@ class DBprovider {
   insertSong(Song song) async {
     final db = await database;
     var res = await db.insert("Song", song.toMap());
+
     return res;
   }
 
@@ -102,6 +103,16 @@ class DBprovider {
     final db = await database;
     var res = await db.insert("Media", media.toMap());
     return res;
+  }
+
+  insertIntersection(int songid, int mediaid) async {
+    final db = await database;
+    var raw = await db.rawInsert(
+      "INSERT Into Song_Media (Song_ID,Media_ID)"
+      " VALUES (?,?)",
+      [songid, mediaid]
+    );
+    return raw;
   }
 
   //Song media table foreign key intersection
@@ -150,6 +161,13 @@ class DBprovider {
     final db = await database;
     var res = await db.query("Media");
     List<Media> list = res.isNotEmpty ? res.map((s) => Media.fromMap(s)).toList() : [];
+    return list;
+  }
+
+  Future<List<SongMedia>> getPhotoIDs(int songid) async {
+    final db = await database;
+    var res = await db.query("Song_Media", where: "Song_ID = ?", whereArgs: [songid]);
+    List<SongMedia> list = res.isNotEmpty ? res.map((s) => SongMedia.fromMap(s)).toList() : [];
     return list;
   }
 
@@ -204,5 +222,27 @@ class DBprovider {
     print("Deleting all media");
     final db = await database;
     db.rawDelete("Delete from Media");
+  }
+
+  //Get new ids
+  getSongID() async {
+    final db = await database;
+    var table = await db.rawQuery("SELECT MAX(Song_ID) + 1 as id FROM Song");
+    int songid = table.first['id'];
+    if(songid == null) {
+      songid = 1;
+    }
+    return songid;
+  }
+
+  getMediaID() async {
+    final db = await database;
+    var table = await db.rawQuery("SELECT MAX(Media_ID)+1 as id FROM Media");
+    int mediaid = table.first['id'];
+    if (mediaid == null) {
+      mediaid = 1;
+    }
+    //print(mediaid);
+    return mediaid;
   }
 }

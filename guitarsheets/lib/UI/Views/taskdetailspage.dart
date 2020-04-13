@@ -3,7 +3,7 @@
 //Dart file for view showing details of a task
 
 import 'package:flutter/material.dart';
-import 'package:guitarsheets/DB/Database.dart';
+//import 'package:guitarsheets/DB/Database.dart';
 import 'package:guitarsheets/DB/TaskModel.dart';
 import 'package:guitarsheets/UI/Forms/edittaskform.dart';
 

@@ -42,3 +42,14 @@ Work Progress:
 	- Implemented Search for tabs via API
   - Week 8:
   	- Implementing other media views
+  - Week 9:
+    - Spring Break
+  - Week 10:
+    - Work on implementing import photos from gallery
+	- Work on implementing taking photos from camera
+	- Store info for media in DB
+  - Week 11:
+  	- Continue work from last week
+  - Week 12:
+  	- Work on CRUD operations for Photo Media
+	- Start UI overhaul

@@ -10,12 +10,12 @@ class HomePage extends StatefulWidget{
 }
 
 class _HomePageState extends State<HomePage> {
-  List<Color> _colors = [
+  /*List<Color> _colors = [
     Colors.grey,
     Colors.green
   ];
 
-  int _colorsIndex = 0;
+  int _colorsIndex = 0;*/
 
   @override 
   Widget build(BuildContext context) {

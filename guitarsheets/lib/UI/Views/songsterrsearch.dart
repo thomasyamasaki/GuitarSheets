@@ -35,6 +35,8 @@ class _SongsterrSearchState extends State<SongsterrSearch> {
         padding: const EdgeInsets.symmetric(horizontal: 16.0),
         child: SearchBar<SongsterrResult>(
           onSearch: getSongsterrResults,
+          minimumChars: 4,
+          debounceDuration: Duration(milliseconds: 500),
           onItemFound: (SongsterrResult result, int index) {
             return Row(
               children: <Widget>[
