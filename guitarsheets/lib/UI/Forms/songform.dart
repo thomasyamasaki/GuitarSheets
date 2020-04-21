@@ -10,6 +10,7 @@ import 'package:guitarsheets/DB/MediaModel.dart';
 import 'package:guitarsheets/UI/Views/songsterrsearch.dart';
 //import 'package:guitarsheets/UI/Views/photo_select.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:path/path.dart';
 import 'package:path_provider/path_provider.dart';
 import 'dart:io';
 
@@ -68,7 +69,6 @@ class _SongFormState extends State<SongForm> {
     //photo.mediaLocation = newpath;
     currentMediaID += 1;
     medialist.add(photo);
-
     setState(() {});
   }
 
@@ -86,6 +86,38 @@ class _SongFormState extends State<SongForm> {
     currentMediaID += 1;
     medialist.add(photo);
     setState(() {});
+  }
+
+  deletePhotoFromPhone(Media photo) async {
+    Directory appDocDir = await getApplicationDocumentsDirectory();
+    String photoPath = join(appDocDir.path, photo.mediaName);
+    File file = new File(photoPath);
+    file.delete();
+  }
+
+  Widget displayMediaList() {
+    return medialist.isNotEmpty
+      ? ListView.builder(
+            shrinkWrap: true,
+            itemCount: medialist.length,
+            itemBuilder: (BuildContext context, int index) {
+              return Card( 
+                child: ListTile( 
+                  title: Text(medialist[index].mediaName),
+                  leading: IconButton( 
+                    icon: Icon(Icons.clear),
+                    onPressed: (){
+                      deletePhotoFromPhone(medialist[index]);
+                      setState(() {
+                        medialist.removeAt(index);
+                      });
+                    },
+                  ),
+                ),
+              );
+            }
+          )
+      : Text("No Images added");          
   }
 
   @override 
@@ -162,7 +194,13 @@ class _SongFormState extends State<SongForm> {
                       onPressed: takePicWithCamera,
                     ),
                 ),
-                
+
+                Column(//padding: const EdgeInsets.symmetric(vertical: 16.0, horizontal: 16.0),
+                    children: <Widget>[
+                        displayMediaList()
+                    ], 
+                ),
+
                 /*Container(padding: const EdgeInsets.symmetric(  
                   vertical: 16.0, horizontal: 16.0),
                   child: 
@@ -208,7 +246,7 @@ class _SongFormState extends State<SongForm> {
                   ),
                 ),
 
-                Container(padding: const EdgeInsets.symmetric(
+                /*Container(padding: const EdgeInsets.symmetric(
                   vertical: 16.0, horizontal: 16.0),
                   child: RaisedButton(
                     child: Text('Press to test stuff'),
@@ -219,7 +257,7 @@ class _SongFormState extends State<SongForm> {
                       }
                     },
                   ),
-                ),
+                ),*/
               ]
             ),
           )

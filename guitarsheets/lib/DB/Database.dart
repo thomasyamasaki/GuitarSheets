@@ -224,6 +224,11 @@ class DBprovider {
     db.rawDelete("Delete from Media");
   }
 
+  deleteIntersection(int mediaID) async {
+    final db = await database;
+    return db.delete("Song_Media", where: "Media_ID = ?", whereArgs: [mediaID]);
+  }
+
   //Get new ids
   getSongID() async {
     final db = await database;

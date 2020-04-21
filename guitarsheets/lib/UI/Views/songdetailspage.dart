@@ -25,10 +25,16 @@ class SongDetailsPage extends StatefulWidget {
 class _SongDetailState extends State<SongDetailsPage> {
   Song song;
   List<File> photos = [];
+  bool change;
 
   _SongDetailState(Song song) {
     this.song = song;
     getPhotosFromDB();
+  }
+
+  void dispose() {
+    PaintingBinding.instance.imageCache.clear();
+    super.dispose();
   }
 
   getPhotosFromDB() async {
@@ -102,6 +108,13 @@ class _SongDetailState extends State<SongDetailsPage> {
             RaisedButton( 
               child: Text('View Photos'),
               onPressed: () {
+                /*if (photos.length > 0) {
+                  for (int i = 0; i < photos.length; i++) {
+                    photos.removeAt(i);
+                  }
+                }
+                getPhotosFromDB();*/
+                
                 Navigator.push(context, 
                   MaterialPageRoute( 
                     builder: (context) => PhotoGallery(pictures: photos,)
