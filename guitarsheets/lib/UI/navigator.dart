@@ -27,14 +27,14 @@ class _AppViewState extends State<AppView> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(title: Text('Guitar Sheets'),
-        backgroundColor: Colors.black,
+        //backgroundColor: Colors.black,
       ),
       body: _appviews.elementAt(_currentIndex),
       bottomNavigationBar: BottomNavigationBar(
         type: BottomNavigationBarType.fixed,
-        backgroundColor: Colors.black,
+        backgroundColor: Theme.of(context).primaryColor,
         unselectedItemColor: Colors.white,
-        selectedItemColor: Colors.blue[700],
+        selectedItemColor: Colors.red[200],//Colors.pink[200],
         onTap: onTabTapped,
         currentIndex: _currentIndex,
         items: [

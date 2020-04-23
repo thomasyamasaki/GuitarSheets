@@ -26,11 +26,18 @@ class _EditTaskState extends State<EditTaskForm> {
   @override 
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.red[700],
+      //backgroundColor: Colors.red[700],
       appBar: AppBar(title: Text('Edit Task'),
         backgroundColor: Colors.black,
       ),
       body: Container(
+        decoration: BoxDecoration(
+          gradient: LinearGradient(
+            begin: Alignment.topCenter,
+            end: Alignment.bottomCenter,
+            colors: [Colors.teal[300], Color(0xfff88379)]
+          )
+        ),
         padding: 
           const EdgeInsets.symmetric(vertical: 16.0, horizontal: 16.0),
         child: Builder(
@@ -56,6 +63,11 @@ class _EditTaskState extends State<EditTaskForm> {
                   onSaved: (val) => setState(() => _task.taskDescription = val),
                 ),
                 Container(padding: const EdgeInsets.symmetric(vertical: 16.0, horizontal: 16.0),
+                  decoration: BoxDecoration( 
+                    boxShadow: [
+                      BoxShadow(color: Colors.grey, blurRadius: 20)
+                    ]
+                  ),
                   child: RaisedButton(
                     color: Colors.white,
                     child: Text('Save'),
@@ -67,15 +79,15 @@ class _EditTaskState extends State<EditTaskForm> {
                     },
                   ),
                 ),
-                Container(padding: const EdgeInsets.symmetric(vertical: 16.0, horizontal: 16.0),
+                /*Container(padding: const EdgeInsets.symmetric(vertical: 16.0, horizontal: 16.0),
                   child: RaisedButton( 
-                    color: Colors.white,
+                    color: Colors.pink[300],
                     child: Text('Cancel'),
                     onPressed: () {
                       Navigator.pop(context);
                     },
                   ),
-                )
+                )*/
               ],
             )
           ),

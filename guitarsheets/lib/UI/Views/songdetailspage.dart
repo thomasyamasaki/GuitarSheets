@@ -1,18 +1,17 @@
 import 'package:flutter/material.dart';
-import 'package:guitarsheets/DB/Database.dart';
-import 'package:guitarsheets/DB/MediaModel.dart';
-//import 'package:guitarsheets/API/songsterr_parser.dart';
 //import 'package:guitarsheets/DB/Database.dart';
+//import 'package:guitarsheets/DB/MediaModel.dart';
+//import 'package:guitarsheets/API/songsterr_parser.dart';
 import 'package:guitarsheets/DB/SongModel.dart';
-import 'package:guitarsheets/DB/SongMediaModel.dart';
+//import 'package:guitarsheets/DB/SongMediaModel.dart';
 import 'package:guitarsheets/UI/Forms/editsongform.dart';
-import 'package:guitarsheets/UI/Views/photogallery.dart';
-import 'package:guitarsheets/UI/Views/testpage.dart';
-import 'package:guitarsheets/UI/Views/webview.dart';
-import 'dart:io';
-import 'package:path/path.dart';
+//import 'package:guitarsheets/UI/Views/photogallery.dart';
+//import 'package:guitarsheets/UI/Views/testpage.dart';
+//import 'package:guitarsheets/UI/Views/webview.dart';
+//import 'dart:io';
+//import 'package:path/path.dart';
 
-import 'package:path_provider/path_provider.dart';
+//import 'package:path_provider/path_provider.dart';
 
 class SongDetailsPage extends StatefulWidget {
   final Song song;
@@ -24,12 +23,12 @@ class SongDetailsPage extends StatefulWidget {
 
 class _SongDetailState extends State<SongDetailsPage> {
   Song song;
-  List<File> photos = [];
-  bool change;
+  //List<File> photos = [];
+  //bool change;
 
   _SongDetailState(Song song) {
     this.song = song;
-    getPhotosFromDB();
+    //getPhotosFromDB();
   }
 
   void dispose() {
@@ -37,7 +36,7 @@ class _SongDetailState extends State<SongDetailsPage> {
     super.dispose();
   }
 
-  getPhotosFromDB() async {
+  /*getPhotosFromDB() async {
     Directory appDocDir = await getApplicationDocumentsDirectory();
     List<SongMedia> picIDs = await DBprovider.db.getPhotoIDs(song.songID);
     for (int i = 0; i < picIDs.length; i++) {
@@ -47,7 +46,7 @@ class _SongDetailState extends State<SongDetailsPage> {
       photos.add(pic);
       //print(dir);
     }
-  }
+  }*/
 
   @override 
   Widget build(BuildContext context) {
@@ -57,19 +56,33 @@ class _SongDetailState extends State<SongDetailsPage> {
         title: Text('Song Details'),
       ),
 
+      floatingActionButton: 
+        FloatingActionButton( 
+          child: Icon(Icons.edit),
+          backgroundColor: Colors.teal[400],
+          onPressed: () {
+            Navigator.push(context, MaterialPageRoute(builder: (context) => EditSongForm(song: song,)));
+          },
+        ),
+
       body: Container(
+        decoration: BoxDecoration(
+          gradient: LinearGradient(
+            colors: [Colors.teal[300], Color(0xfff88379)], begin: Alignment.topCenter, end: Alignment.bottomCenter
+          )
+        ),
         padding: EdgeInsets.symmetric(vertical: 16.0, horizontal: 16.0),
         child: ListView(
           children: <Widget>[
             Text(song.songTitle + '\n',
               style: TextStyle(fontWeight: FontWeight.bold, fontSize: 30.0),
             ),
-            Text('Title:',
+            /*Text('Title:',
               style: TextStyle(fontSize: 20),
             ),
             Text(song.songTitle + '\n',
               style: TextStyle(fontSize: 20),
-            ),
+            ),*/
             Text('Artist:',
               style: TextStyle(fontSize: 20),
             ),
@@ -89,7 +102,7 @@ class _SongDetailState extends State<SongDetailsPage> {
               style: TextStyle(fontSize: 20),
             ),
 
-            RaisedButton(
+            /*RaisedButton(
               child: Text('Songsterr tabs'),
               onPressed: () {
                 if (song.songsterrURL == null) {
@@ -103,11 +116,11 @@ class _SongDetailState extends State<SongDetailsPage> {
                   );
                 }
               },
-            ),
+            ),*/
 
-            RaisedButton( 
+            /*RaisedButton( 
               child: Text('View Photos'),
-              onPressed: () {
+              onPressed: () {*/
                 /*if (photos.length > 0) {
                   for (int i = 0; i < photos.length; i++) {
                     photos.removeAt(i);
@@ -115,15 +128,15 @@ class _SongDetailState extends State<SongDetailsPage> {
                 }
                 getPhotosFromDB();*/
                 
-                Navigator.push(context, 
+              /*  Navigator.push(context, 
                   MaterialPageRoute( 
                     builder: (context) => PhotoGallery(pictures: photos,)
                   )
                 );
               },
-            ),
+            ),*/
 
-            RaisedButton( 
+            /*RaisedButton( 
               child: Text('Edit Song'),
               onPressed: (){
                 Navigator.push(
@@ -133,7 +146,7 @@ class _SongDetailState extends State<SongDetailsPage> {
                   )
                 );
               },
-            ),
+            ),*/
 
             /*Row(
               children: <Widget>[
