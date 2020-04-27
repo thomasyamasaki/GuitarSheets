@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 //import 'package:guitarsheets/DB/Database.dart';
 //import 'package:guitarsheets/DB/MediaModel.dart';
 //import 'package:guitarsheets/API/songsterr_parser.dart';
@@ -53,7 +54,7 @@ class _SongDetailState extends State<SongDetailsPage> {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.black,
-        title: Text('Song Details'),
+        title: Text('Song Details', style: GoogleFonts.b612(),),
       ),
 
       floatingActionButton: 
@@ -71,10 +72,11 @@ class _SongDetailState extends State<SongDetailsPage> {
             colors: [Colors.teal[300], Color(0xfff88379)], begin: Alignment.topCenter, end: Alignment.bottomCenter
           )
         ),
-        padding: EdgeInsets.symmetric(vertical: 16.0, horizontal: 16.0),
+        padding: EdgeInsets.symmetric(vertical: 30.0, horizontal: 30.0),
         child: ListView(
           children: <Widget>[
             Text(song.songTitle + '\n',
+              textAlign: TextAlign.center,
               style: TextStyle(fontWeight: FontWeight.bold, fontSize: 30.0),
             ),
             /*Text('Title:',
@@ -84,21 +86,27 @@ class _SongDetailState extends State<SongDetailsPage> {
               style: TextStyle(fontSize: 20),
             ),*/
             Text('Artist:',
-              style: TextStyle(fontSize: 20),
+              textAlign: TextAlign.center,
+              style: TextStyle(fontSize: 20,),
             ),
             Text(song.songArtist + '\n',
+              textAlign: TextAlign.center,
               style: TextStyle(fontSize: 20),
             ),
             Text('Genre:',
+              textAlign: TextAlign.center,
               style: TextStyle(fontSize: 20),
             ),
             Text(song.songGenre + '\n',
+              textAlign: TextAlign.center,
               style: TextStyle(fontSize: 20),
             ),
             Text('Length:',
+              textAlign: TextAlign.center,
               style: TextStyle(fontSize: 20),
             ),
             Text(song.songLength + '\n',
+              textAlign: TextAlign.center,
               style: TextStyle(fontSize: 20),
             ),
 

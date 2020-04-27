@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:guitarsheets/DB/Database.dart';
 import 'package:guitarsheets/DB/SongModel.dart';
 import 'package:guitarsheets/DB/MediaModel.dart';
@@ -23,6 +24,9 @@ class _EditSongState extends State<EditSongForm> {
   Song _song;
   final _titlecontroller = TextEditingController();
   final _artistcontroller = TextEditingController();
+  final _songsterrcontroller = TextEditingController();
+  final _genrecontroller = TextEditingController();
+  final _lengthcontroller = TextEditingController();
 
   //for media portion
   List<Media> medialist = [];
@@ -33,6 +37,9 @@ class _EditSongState extends State<EditSongForm> {
     this._song = song;
     _titlecontroller.text = _song.songTitle;
     _artistcontroller.text = _song.songArtist;
+    _songsterrcontroller.text = _song.songsterrURL;
+    _genrecontroller.text = _song.songGenre;
+    _lengthcontroller.text = _song.songLength;
     getCurrentMediaID();
     getMediaFromDB();
   }
@@ -40,6 +47,9 @@ class _EditSongState extends State<EditSongForm> {
   void dispose() {
     _titlecontroller.dispose();
     _artistcontroller.dispose();
+    _songsterrcontroller.dispose();
+    _genrecontroller.dispose();
+    _lengthcontroller.dispose();
     super.dispose();
   }
 
@@ -142,10 +152,12 @@ class _EditSongState extends State<EditSongForm> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar( 
-        title: Text('Edit Song'),
+        title: Text('Edit Song', style: GoogleFonts.b612(),),
         backgroundColor: Colors.black,
       ),
       body: Container(
+        decoration: BoxDecoration(
+          gradient: LinearGradient(colors: [Colors.teal[300], Color(0xfff88379)], begin: Alignment.topCenter, end: Alignment.bottomCenter)),
         padding: const EdgeInsets.symmetric(vertical: 16.0, horizontal: 16.0),
         child: Builder(
           builder: (context) => Form(
@@ -154,36 +166,55 @@ class _EditSongState extends State<EditSongForm> {
               //crossAxisAlignment: CrossAxisAlignment.stretch,
               //padding: const EdgeInsets.symmetric(vertical: 16.0),
               children: [
-                Text('Song Form'),
+                Text('Basic Details', textAlign: TextAlign.center,
+                  style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20)
+                ),
                 TextFormField(decoration:
-                  InputDecoration(labelText: 'Song Title',),
+                  InputDecoration(labelText: 'Song Title',
+                    suffixIcon: IconButton(icon: Icon(Icons.clear)
+                    , onPressed: () => _titlecontroller.clear())
+                  ),
                   //initialValue: _song.songTitle,
                   controller: _titlecontroller,
                   onSaved: (val) => setState(() => _song.songTitle = val)),
                 TextFormField(decoration:
-                  InputDecoration(labelText: 'Song Artist'),
+                  InputDecoration(labelText: 'Song Artist',
+                    suffixIcon: IconButton(icon: Icon(Icons.clear)
+                    , onPressed: () => _artistcontroller.clear())
+                  ),
                   //initialValue: _song.songArtist,
                   controller: _artistcontroller,
                   onSaved: (val) => setState(() => _song.songArtist = val)),
                 TextFormField(decoration:
-                  InputDecoration(labelText: 'Song Genre'),
-                  initialValue: _song.songGenre,
+                  InputDecoration(labelText: 'Song Genre',
+                    suffixIcon: IconButton(icon: Icon(Icons.clear)
+                    , onPressed: () => _genrecontroller.clear())
+                  ),
+                  //initialValue: _song.songGenre,
+                  controller: _genrecontroller,
                   onSaved: (val) => setState(() => _song.songGenre = val)),
                 TextFormField(decoration:
-                  InputDecoration(labelText: 'Song Length'),
-                  initialValue: _song.songLength,
+                  InputDecoration(labelText: 'Song Length',
+                    suffixIcon: IconButton(icon: Icon(Icons.clear)
+                    , onPressed: () => _lengthcontroller.clear())
+                  ),
+                  //initialValue: _song.songLength,
+                  controller: _lengthcontroller,
                   onSaved: (val) => setState(() => _song.songLength = val),),
 
-                Text(""),
-                Text('Search for Songsterr tabs'),
+                Text("\n"),
+                Text('Songsterr tab search', textAlign: TextAlign.center,
+                  style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20)
+                ),
+
 
                 Container( 
-                  padding: EdgeInsets.symmetric(
+                  /*padding: EdgeInsets.symmetric(
                     vertical: 16.0, horizontal: 16.0
-                  ),
+                  ),*/
                   child: Row(
                     children: <Widget>[
-                      Expanded( 
+                      /*Expanded( 
                         child: RaisedButton(
                           child: Text('Songsterr Tabs Search'),
                           onPressed: () {
@@ -199,14 +230,67 @@ class _EditSongState extends State<EditSongForm> {
                             );
                           },
                         ),
-                      )
+                      )*/
+                      Expanded( 
+                        child: TextFormField( 
+                          decoration: InputDecoration(labelText: 'Songsterr URL'),
+                          keyboardType: TextInputType.multiline,
+                          minLines: 2,
+                          maxLines: null,
+                          controller: _songsterrcontroller,
+                          onSaved: (val) => setState(() => _song.songsterrURL = val),
+                        ),
+                      ),
+
+                      IconButton(icon: Icon(Icons.close), 
+                        onPressed: () {
+                          setState(() {
+                            _songsterrcontroller.clear();
+                          });
+                        }
+                      ),
+                      
+                      Column(children: <Widget>[
+                        //Icon(Icons.check_circle_outline)
+                        IconButton(icon: Icon(Icons.search), 
+                          onPressed: () {
+                            Navigator.push(
+                              context, MaterialPageRoute(
+                                builder: (context) => SongsterrSearch(song: _song,
+                                  titlecon: _titlecontroller, artistcon: _artistcontroller, scon: _songsterrcontroller,)));
+                          }
+                        )
+                      ],)
                     ],
                   ),
                 ),
 
-                Text('Photo Sheets'),
+                Text("\n"),
 
-                Container(padding: const EdgeInsets.symmetric(
+                Text('Import Photo Sheets\n', textAlign: TextAlign.center,
+                  style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20)
+                ),
+
+                Text('Source:\n',
+                  textAlign: TextAlign.center,
+                  style: TextStyle(fontSize: 16),
+                ),
+
+                Center(
+                  child: Row(children: <Widget>[
+                    Expanded( 
+                      child: IconButton(icon: Icon(Icons.photo), onPressed: selectFromCameraRoll),
+                    ),
+                    Expanded( 
+                      child: IconButton(icon: Icon(Icons.camera), onPressed: takePicWithCamera),
+                    )
+                    
+                    
+                  ],),
+                ),
+
+
+                /*Container(padding: const EdgeInsets.symmetric(
                   vertical: 16.0, horizontal: 16.0),
                   child: RaisedButton( 
                     child: Text('Import photo from gallery'),
@@ -220,6 +304,11 @@ class _EditSongState extends State<EditSongForm> {
                       child: Text('Take photo with camera'),
                       onPressed: takePicWithCamera,
                     ),
+                ),*/
+
+                Text('\n\nPhoto List:\n',
+                  textAlign: TextAlign.center,
+                  style: TextStyle(fontSize: 16),
                 ),
 
                 Column(//padding: const EdgeInsets.symmetric(vertical: 16.0, horizontal: 16.0),

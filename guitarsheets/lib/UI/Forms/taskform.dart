@@ -3,6 +3,7 @@
 //Form for adding a task to the To-do list
 
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:guitarsheets/DB/TaskModel.dart';
 import 'package:guitarsheets/DB/Database.dart';
 
@@ -19,7 +20,7 @@ class _TaskFormState extends State<TaskForm> {
   Widget build(BuildContext context) {
     return Scaffold(
       //backgroundColor: Colors.red[700],
-      appBar: AppBar(title: Text('New Task'),
+      appBar: AppBar(title: Text('New Task', style: GoogleFonts.b612(),),
         backgroundColor: Colors.black,
       ),
       body: Container(
@@ -37,7 +38,7 @@ class _TaskFormState extends State<TaskForm> {
             key:_formKey,
             child: ListView(
               children: [
-                Text('Task Form'),
+                Text('Task Details', textAlign: TextAlign.center, style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),),
                 TextFormField(decoration: 
                   InputDecoration(labelText: 'Task Title'),
                   onSaved: (val) => setState(() => _task.taskTitle = val)),
@@ -46,14 +47,18 @@ class _TaskFormState extends State<TaskForm> {
                   onSaved: (val) => setState(() => _task.song = val)),
                 TextFormField(decoration: 
                   InputDecoration(labelText: 'Description'),
+                  keyboardType: TextInputType.multiline,
+                  minLines: 3,
+                  maxLines: null,
                   onSaved: (val) => setState(() => _task.taskDescription = val)),
+                Text('\n\n'),
                 Container(padding: const EdgeInsets.symmetric(
                   vertical: 16.0, horizontal: 16.0),
-                  decoration: BoxDecoration(
+                  /*decoration: BoxDecoration(
                     boxShadow: [
                       BoxShadow(color: Colors.grey, blurRadius: 20)
                     ]
-                  ),
+                  ),*/
                   child: RaisedButton(
                     color: Colors.white,
                     child: Text('Save'),

@@ -3,6 +3,7 @@
 //Dart file for bottom navigation bar implementation
 
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 //import 'package:guitarsheets/UI/Views/accountpage.dart';
 import 'package:guitarsheets/UI/Views/homepage.dart';
 import 'package:guitarsheets/UI/Views/songlist.dart';
@@ -26,7 +27,7 @@ class _AppViewState extends State<AppView> {
   @override 
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text('Guitar Sheets'),
+      appBar: AppBar(title: Text('Guitar Sheets', style: GoogleFonts.b612(),),
         //backgroundColor: Colors.black,
       ),
       body: _appviews.elementAt(_currentIndex),

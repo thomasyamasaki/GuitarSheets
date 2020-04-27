@@ -24,7 +24,7 @@ class _HomePageState extends State<HomePage> {
       //backgroundColor: Theme.of(context).backgroundColor,
       floatingActionButton: 
         FloatingActionButton(child: Icon(Icons.add),
-          backgroundColor: Colors.teal[400],//Colors.lightGreen[400],
+          //backgroundColor: Colors.teal[400],//Colors.lightGreen[400],
           onPressed: () {
             Navigator.push(context, MaterialPageRoute(builder: (context) => TaskForm()));
           }

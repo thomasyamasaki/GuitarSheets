@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:guitarsheets/UI/Views/songdetailspage.dart';
+import 'package:guitarsheets/UI/Views/testpage.dart';
 import 'package:guitarsheets/UI/Views/webview.dart';
 import 'package:guitarsheets/UI/Views/photogallery.dart';
 import 'package:guitarsheets/DB/Database.dart';
@@ -37,7 +38,12 @@ class _DetailsNavState extends State<DetailsNav> {
       return SongDetailsPage(song: song,);
     }
     else if (index == 1) {
-      return WebViewPage(url: song.songsterrURL);
+      if (song.songsterrURL == null || song.songsterrURL == "") {
+        return TestPage();
+      }
+      else {
+        return WebViewPage(url: song.songsterrURL);
+      }
     }
     else if (index == 2) {
       return PhotoGallery(pictures: photos,);

@@ -2,6 +2,7 @@
 //Comp 499
 
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:guitarsheets/DB/Database.dart';
 import 'package:guitarsheets/DB/TaskModel.dart';
 
@@ -27,7 +28,7 @@ class _EditTaskState extends State<EditTaskForm> {
   Widget build(BuildContext context) {
     return Scaffold(
       //backgroundColor: Colors.red[700],
-      appBar: AppBar(title: Text('Edit Task'),
+      appBar: AppBar(title: Text('Edit Task', style: GoogleFonts.b612(),),
         backgroundColor: Colors.black,
       ),
       body: Container(
@@ -45,7 +46,7 @@ class _EditTaskState extends State<EditTaskForm> {
             key: _formKey,
             child: ListView(
               children: <Widget>[
-                Text('Edit Task Form'),
+                Text('Task Details', textAlign: TextAlign.center, style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),),
                 TextFormField(
                   decoration: InputDecoration(labelText: 'Task Title'),
                   //controller: _formController,
@@ -59,15 +60,19 @@ class _EditTaskState extends State<EditTaskForm> {
                 ),
                 TextFormField(
                   decoration: InputDecoration(labelText: 'Description'),
+                  keyboardType: TextInputType.multiline,
+                  minLines: 3,
+                  maxLines: null,
                   initialValue: _task.taskDescription,
                   onSaved: (val) => setState(() => _task.taskDescription = val),
                 ),
+                Text('\n\n'),
                 Container(padding: const EdgeInsets.symmetric(vertical: 16.0, horizontal: 16.0),
-                  decoration: BoxDecoration( 
+                  /*decoration: BoxDecoration( 
                     boxShadow: [
                       BoxShadow(color: Colors.grey, blurRadius: 20)
                     ]
-                  ),
+                  ),*/
                   child: RaisedButton(
                     color: Colors.white,
                     child: Text('Save'),
