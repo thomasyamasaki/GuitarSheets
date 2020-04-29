@@ -317,9 +317,12 @@ class _EditSongState extends State<EditSongForm> {
                     ], 
                 ),
 
+                Text('\n\n'),
+
                 Container(padding: const EdgeInsets.symmetric(  
                   vertical: 16.0, horizontal: 16.0),
                   child: RaisedButton(
+                    color: Colors.white,
                     child: Text('Save'),
                     onPressed: () {
                       final form = _formKey.currentState;
