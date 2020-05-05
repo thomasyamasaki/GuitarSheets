@@ -63,7 +63,7 @@ class _SongListState extends State<SongList> {
                               onTap: () {
                                 Navigator.push(context, 
                                   MaterialPageRoute( 
-                                    builder: (context) => DetailsNav(song: songList.data[index],)//SongDetailsPage(song: songList.data[index],)
+                                    builder: (context) => DetailsNav(song: song,)//SongDetailsPage(song: songList.data[index],)
                                   )
                                 );
                               },
