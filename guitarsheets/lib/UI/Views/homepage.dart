@@ -88,8 +88,16 @@ class _HomePageState extends State<HomePage> {
                                 ]
                               ),
                               children: <Widget>[
-                                Text('Song: ' + todoList.data[index].song, textAlign: TextAlign.left, style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16)),
-                                Text('Description: ' + todoList.data[index].taskDescription, textAlign: TextAlign.left, style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16),),
+                                Container( 
+                                  padding: const EdgeInsets.symmetric(vertical: 5.0, horizontal: 5.0),
+                                  child: Text('Song: ' + todoList.data[index].song, textAlign: TextAlign.center, style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16)),
+                                ),
+
+                                Container( 
+                                  padding: const EdgeInsets.symmetric(vertical: 5.0, horizontal: 10.0),
+                                  child: Text('Description: ' + todoList.data[index].taskDescription, textAlign: TextAlign.center, style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16),),
+                                ),
+                                
                                 Row(mainAxisAlignment: MainAxisAlignment.center,
                                   children: <Widget>[
                                   Icon(Icons.edit),

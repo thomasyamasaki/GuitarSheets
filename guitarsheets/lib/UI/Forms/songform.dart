@@ -154,7 +154,11 @@ class _SongFormState extends State<SongForm> {
                     , onPressed: () => _titlecontroller.clear())
                   ),
                   controller: _titlecontroller,
-                  onSaved: (val) => setState(() => _song.songTitle = val)),
+                  onSaved: (val) {
+                    setState(() {
+                      _song.songTitle = val;
+                    });
+                  },),
                 TextFormField(decoration:
                   InputDecoration(labelText: 'Song Artist',
                     suffixIcon: IconButton(icon: Icon(Icons.clear), 
@@ -309,8 +313,45 @@ class _SongFormState extends State<SongForm> {
                     color: Colors.white,
                     child: Text('Save'),
                     onPressed: () {
-                      final form = _formKey.currentState;
-                      form.save();
+                      /*final form = _formKey.currentState;
+                      form.save();*/
+                      if (_titlecontroller.text != null) {
+                        _song.songTitle = _titlecontroller.text;
+                      }
+                      else {
+                        _song.songTitle = "";
+                      }
+                      
+                      if (_artistcontroller.text != null) {
+                        _song.songArtist = _artistcontroller.text;
+                      }
+                      else {
+                        _song.songArtist = "";
+                      }
+                      
+                      if (_genrecontroller.text != null) {
+                        _song.songGenre = _genrecontroller.text;
+                      }
+                      else {
+                        _song.songGenre = "";
+                      }
+                      
+                      if (_lengthcontroller.text != null) {
+                        _song.songLength = _lengthcontroller.text;
+                      }
+                      else {
+                        _song.songLength = "";
+                      }
+
+                      if (_songsterrcontroller.text != null) {
+                        _song.songsterrURL = _songsterrcontroller.text;
+                      }
+                      else {
+                        _song.songsterrURL = "";
+                      }
+                      
+                    
+                      //_formKey.currentState.save();
 
                       //insert song into DB
                       DBprovider.db.insertSong(_song);
@@ -326,6 +367,9 @@ class _SongFormState extends State<SongForm> {
                           DBprovider.db.insertIntersection(_song.songID, medialist[j].mediaID);
                         }
                       }
+
+                      //print(_titlecontroller.text);
+                      //print(_artistcontroller.text);
                       
                       Navigator.pop(context);
                     },

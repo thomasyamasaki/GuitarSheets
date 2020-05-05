@@ -29,6 +29,7 @@ class _SongDetailState extends State<SongDetailsPage> {
 
   _SongDetailState(Song song) {
     this.song = song;
+    //print(song.songTitle);
     //getPhotosFromDB();
   }
 
@@ -75,10 +76,11 @@ class _SongDetailState extends State<SongDetailsPage> {
         padding: EdgeInsets.symmetric(vertical: 30.0, horizontal: 30.0),
         child: ListView(
           children: <Widget>[
-            Text(song.songTitle + '\n',
+            Text(song.songTitle,
               textAlign: TextAlign.center,
               style: TextStyle(fontWeight: FontWeight.bold, fontSize: 30.0),
             ),
+            Text('\n'),
             /*Text('Title:',
               style: TextStyle(fontSize: 20),
             ),
@@ -89,26 +91,29 @@ class _SongDetailState extends State<SongDetailsPage> {
               textAlign: TextAlign.center,
               style: TextStyle(fontSize: 20,),
             ),
-            Text(song.songArtist + '\n',
+            Text(song.songArtist,
               textAlign: TextAlign.center,
               style: TextStyle(fontSize: 20),
             ),
+            Text('\n'),
             Text('Genre:',
               textAlign: TextAlign.center,
               style: TextStyle(fontSize: 20),
             ),
-            Text(song.songGenre + '\n',
+            Text(song.songGenre,
               textAlign: TextAlign.center,
               style: TextStyle(fontSize: 20),
             ),
+            Text('\n'),
             Text('Length:',
               textAlign: TextAlign.center,
               style: TextStyle(fontSize: 20),
             ),
-            Text(song.songLength + '\n',
+            Text(song.songLength,
               textAlign: TextAlign.center,
               style: TextStyle(fontSize: 20),
             ),
+            Text('\n')
 
             /*RaisedButton(
               child: Text('Songsterr tabs'),
